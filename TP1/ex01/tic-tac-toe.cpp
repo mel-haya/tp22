@@ -9,8 +9,7 @@ TicTacToe::TicTacToe()
     }
     this->turn = joueur1;
     this->winner = personne;
-    this->lastX = 0;
-    this->lastY = 0;
+    rounds = 0;
 }
 
 int TicTacToe::jouer(int x, int y)
@@ -30,11 +29,12 @@ int TicTacToe::jouer(int x, int y)
         return 1;
     }
     grid[x][y] = turn;
-    lastX = x;
-    lastY = y;
-    winner = gagner();
+    rounds++;
+    winner = gagner(x, y);
     if(winner != personne)
-        std::cout << "* the player" << winner << " has won *" << std::endl;    
+        std::cout << "* the player" << winner << " has won *" << std::endl;
+    else if(rounds == 9)
+        std::cout << "* DRAW *" << std::endl;
     if(turn == joueur1)
         turn = joueur2;
     else
@@ -42,13 +42,13 @@ int TicTacToe::jouer(int x, int y)
     return 0;
 }
 
-Cell TicTacToe::gagner(void)
+Cell TicTacToe::gagner(int x, int y)
 {
     if(winner != personne)
         return winner;
-    if(grid[lastX][0] == turn && grid[lastX][1] == turn && grid[lastX][2] == turn )
+    if(grid[x][0] == turn && grid[x][1] == turn && grid[x][2] == turn )
         return turn;
-    if(grid[0][lastY] == turn && grid[1][lastY] == turn && grid[2][lastY] == turn)
+    if(grid[0][y] == turn && grid[1][y] == turn && grid[2][y] == turn)
         return turn;
     if ((grid[0][0] == turn && grid[1][1] == turn && grid[2][2] == turn) ||
         (grid[0][2] == turn && grid[1][1] == turn && grid[2][0] == turn))
@@ -71,4 +71,6 @@ void TicTacToe::printBoard(void)
         }
         std::cout << std::endl;
     }
+    if(rounds == 9)
+        exit(0);
 }

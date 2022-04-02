@@ -1,45 +1,44 @@
 #include "liste.hpp"
-#include <iostream>
 
-liste_case::liste_case(int val, liste_case *next):value(val){
+Liste_case::Liste_case(int val, Liste_case *next):value(val){
     this->next = next;
 }
 
-liste::liste(){
+Liste::Liste(){
     root = NULL;
 }
 
-liste::liste(int *arr, int length)
+Liste::Liste(int *arr, int length)
 {
     root = NULL;
     for(int i = 0; i < length; i++)
         add(arr[i]);
 }
 
-void liste::add(int val)
+void Liste::add(int val)
 {
     if(val < 0)
         return;
     if(!root)
-        root = new liste_case(val, 0);
+        root = new Liste_case(val, 0);
     else
     {
-        liste_case *tmp = root;
+        Liste_case *tmp = root;
         while(tmp)
         {
             if(!tmp->next)
             {
-                tmp->next = new liste_case(val, 0);
+                tmp->next = new Liste_case(val, 0);
                 return;
             }
             tmp = tmp->next;
         }
     }
 }
-int liste::size()
+int Liste::size()
 {
     int s = 0;
-    liste_case* tmp = root;
+    Liste_case* tmp = root;
     while (tmp)
     {
         s++;
@@ -47,9 +46,9 @@ int liste::size()
     }
     return (s);     
 }
-bool liste::contains(int val)
+bool Liste::contains(int val)
 {
-    liste_case* tmp = root;
+    Liste_case* tmp = root;
     if(!root)
         return false;
     while (tmp)
@@ -61,9 +60,9 @@ bool liste::contains(int val)
     return (false);
 }
 
-int liste::gets(int index)
+int Liste::gets(int index)
 {
-    liste_case *tmp = root;
+    Liste_case *tmp = root;
 
     if(index < 0 || !root)
         return -1;
@@ -76,10 +75,10 @@ int liste::gets(int index)
     return -1;
 }
 
-void liste::remove(int value)
+void Liste::remove(int value)
 {
-    liste_case *tmp = root;
-    liste_case *tmp2;
+    Liste_case *tmp = root;
+    Liste_case *tmp2;
     if(!root)
         return;
     if(tmp->value == value)
@@ -102,9 +101,9 @@ void liste::remove(int value)
     }
 }
 
-void liste::print()
+void Liste::print()
 {
-    liste_case *tmp = root;
+    Liste_case *tmp = root;
 
     while (tmp->next)
     {
@@ -114,23 +113,23 @@ void liste::print()
     std::cout << tmp->value << std::endl;
 }
 
-liste::~liste()
+Liste::~Liste()
 {
     while(root)
         remove(root->value);
 }
 
-liste::liste(const liste &c)
+Liste::Liste(const Liste &c)
 {
     *this = c;
 }
 
-liste & liste::operator = (const liste &c)
+Liste & Liste::operator = (const Liste &c)
 {
     if(this != &c)
     {
         root = NULL;
-        liste_case *tmp = c.root;
+        Liste_case *tmp = c.root;
         while(tmp)
         {
             add(tmp->value);
@@ -138,22 +137,4 @@ liste & liste::operator = (const liste &c)
         }
     }
     return *this;
-}
-
-int main()
-{
-    int a[] = {5, 8 };
-
-    liste m(a, 2);
-    liste l(m);
-    
-    l.print();
-    l.add(86);
-    l.print();
-    l.remove(5);
-
-    if(l.contains(8))
-        l.print();
-    std::cout << "size = " << l.size()<< std::endl;
-    
 }

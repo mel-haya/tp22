@@ -2,18 +2,19 @@
 #define ENSEMBLE_HPP
 
 #include "liste.hpp"
+#include <iostream>
 
-class ensemble
+class Ensemble
 {
 private:
-    liste c;
+    Liste c;
 public:
-    ensemble();
-    ~ensemble();
+    Ensemble();
+    ~Ensemble();
     void ajouter(int val);
     void supprimer(int val);
-    ensemble &operator+(ensemble l);
-    ensemble &operator-(ensemble l);
+    Ensemble &operator+(Ensemble l);
+    Ensemble &operator-(Ensemble l);
     void print();
 };
 #endif

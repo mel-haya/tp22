@@ -1,23 +1,23 @@
-#ifndef LISTE
-#define LISTE
+#ifndef Liste_HPP
+#define Liste_HPP
 
 #include "liste_case.hpp"
-class liste
+class Liste
 {
     private:
-        liste_case *root;
+        Liste_case *root;
     public:
-        liste();
-        liste(int *arr, int length);
-        liste(const liste &c);
-        ~liste();
+        Liste();
+        Liste(int *arr, int length);
+        Liste(const Liste &c);
+        ~Liste();
         void add(int val);
         int size();
         bool contains(int val);
         int gets(int index);
         void remove(int value);
         void print();
-        liste & operator = (const liste &c);
+        Liste & operator = (const Liste &c);
 };
 
 

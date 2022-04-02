@@ -1,28 +1,28 @@
 #include "ensemble.hpp"
 
-ensemble::ensemble()
+Ensemble::Ensemble()
 {
 }
 
-ensemble::~ensemble()
+Ensemble::~Ensemble()
 {
 }
 
-void ensemble::ajouter(int val)
+void Ensemble::ajouter(int val)
 {
     if(val < 0 || c.contains(val))
         return;
     c.add(val);
 }
 
-void ensemble::supprimer(int val)
+void Ensemble::supprimer(int val)
 {
     if(val < 0)
         return;
     c.remove(val);
 }
 
-ensemble &ensemble::operator+(ensemble l)
+Ensemble &Ensemble::operator+(Ensemble l)
 {
     int s = l.c.size();
     for(int i = 0; i < s; i++)
@@ -32,7 +32,7 @@ ensemble &ensemble::operator+(ensemble l)
     return *this;
 }
 
-ensemble &ensemble::operator-(ensemble l)
+Ensemble &Ensemble::operator-(Ensemble l)
 {
     int s = l.c.size();
     for(int i = 0; i < s; i++)
@@ -42,44 +42,7 @@ ensemble &ensemble::operator-(ensemble l)
     return *this;
 }
 
-void ensemble::print()
+void Ensemble::print()
 {
     c.print();
-}
-
-int main()
-{
-    ensemble a;
-    ensemble b;
-    ensemble c;
-
-    a.ajouter(5);
-    a.ajouter(52);
-    a.ajouter(51);
-    a.ajouter(544);
-    a.ajouter(85);
-
-    b.ajouter(25);
-    b.ajouter(56);
-    b.ajouter(18);
-
-    c.ajouter(51);
-    c.ajouter(544);
-
-    a.print();
-    b.print();
-
-    a = a + b;
-
-    a.print();
-
-    a.supprimer(25);
-
-    a.print();
-
-    a = a - c;
-
-    a.print();
-
-    return 0;
 }

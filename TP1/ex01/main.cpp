@@ -3,8 +3,10 @@
 int main()
 {
     TicTacToe board;
-    int x,y;
-    while(board.gagner() == personne)
+    int x = 0;
+    int y = 0;
+
+    while(board.gagner(x,y) == personne)
     {   
         std::cout << "select a valid ligne :";
         std::cin >> x;

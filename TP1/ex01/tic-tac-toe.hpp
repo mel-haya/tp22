@@ -13,12 +13,11 @@ class TicTacToe
         Cell grid[WIDTH][WIDTH];
         Cell turn;
         Cell winner;
-        int lastX;
-        int lastY;
+        int rounds;
     public:
         TicTacToe();
         int jouer(int x, int y);
-        Cell gagner(void);
+        Cell gagner(int x, int y);
         void printBoard(void);
 };
 

@@ -3,14 +3,14 @@
 
 #include "liste.hpp"
 
-class liste_case
+class Liste_case
 {
     private:
         int value;
-        liste_case *next;
+        Liste_case *next;
     public:
-        liste_case(int val, liste_case *next);
-        friend class liste;//required to access next element
+        Liste_case(int val, Liste_case *next);
+        friend class Liste;//required to access next element
 };
 
 #endif
