@@ -32,3 +32,8 @@ Personne &Tableau::operator[](int index)
         index = 0;
     return arr[index];
 }
+
+int Tableau::size()
+{
+    return length;
+}

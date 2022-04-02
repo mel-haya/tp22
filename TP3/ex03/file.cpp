@@ -3,16 +3,35 @@
 Personne::Personne()
 {
     nom = "anon";
+    date_embauche.jour = 20;
+    date_embauche.mois = 2;
+    date_embauche.annee = 2022;
 }
 
-Personne::Personne(std::string n)
+Personne::Personne(std::string n, int d, int m, int y)
 {
     nom = n;
+    date_embauche.jour = d;
+    date_embauche.mois = m;
+    date_embauche.annee = y;
+}
+
+void Personne::define_personne()
+{
+    std::cout << "Nom : ";
+    std::cin >> nom;
+    std::cout << "Date embauche (jj mm aaaa) : ";
+    std::cin >> date_embauche.jour >> date_embauche.mois >> date_embauche.annee; 
+}
+
+std::string Personne::to_string() const
+{
+    return nom + "\tEmbauche : " + date_embauche.to_string();
 }
 
 void Personne::annencer()
 {
-    std::cout << "my name is " << nom << std::endl;
+    std::cout << this->to_string() << std::endl;
 }
 
 
