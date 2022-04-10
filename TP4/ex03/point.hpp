@@ -1,25 +1,23 @@
 #ifndef POINT_HPP
 #define POINT_HPP
 
+#include <iostream>
 template<class T, unsigned int S>
 class Point
 {
     private:
-        T*  coords;
+        T coords[S];
     public:
         Point(T *src)
         {
-            coords = new T[S];
             for(int i = 0; i < S; i++)
                 coords[i] = src[i];
         }
 
         Point operator+(Point rhs)
         {
-            if(this->S != rhs.S)
-                return *this;
-            Point ret = Point(this->coords, size);
-            for(int i = 0; i < this->size ; i++)
+            Point ret = Point(this->coords);
+            for(int i = 0; i < S ; i++)
             {
                 ret.coords[i] += rhs.coords[i];
             }
@@ -28,12 +26,10 @@ class Point
 
         T operator*(Point rhs)
         {
-            if(this->size != rhs.size)
-                return 0;
             T ret = 0;
-            for(int i = 0; i < this->size ; i++)
+            for(int i = 0; i < S ; i++)
             {
-                ret += this.coords[i] * rhs.coords[i];
+                ret += this->coords[i] * rhs.coords[i];
             }
             return ret;
         }
@@ -42,24 +38,18 @@ class Point
         {
             return coords[i];
         }
-
-        T getSize()
-        {
-            return this->size;
-        }
-
 };
 
-template<class T>
-Point<T> concat(Point<T> &lhs, Point<T> &rhs)
+template<class T , unsigned int S1, unsigned int S2>
+Point<T, S1 + S2> concat(Point<T,S1> &lhs, Point<T,S2> &rhs)
 {
-    T* coords = new T[lhs.getSize() + rhs.getSize()];
+    T* coords = new T[S1 + S2];
 
-    for(int i = 0; i < lhs.getSize(); i++)
+    for(int i = 0; i < S1; i++)
         coords[i] = lhs[i];
-    for(int i = 0; i < rhs.getSize(); i++)
-        coords[lhs.getSize() + i] = rhs[i];
-    Point<T> ret = Point(coords, lhs.getSize() + rhs.getSize());
+    for(int i = 0; i < S2; i++)
+        coords[S1 + i] = rhs[i];
+    Point<T, S1 + S2> ret = Point<T, S1 + S2>(coords);
     delete [] coords;
     return ret;
 }

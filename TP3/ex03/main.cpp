@@ -7,7 +7,7 @@ int main()
 
     FileAvancee file;
     file << a << b << c << d << e << f << g << h;
-    Tableau &t = file(30);
+    Tableau &t = file(5);
     for(int i = 0; i < t.size(); i++)
         t[i].annencer();
     delete &t;

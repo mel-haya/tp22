@@ -62,7 +62,7 @@ File &File::operator=(const File& c)
         end = c.end;
         size = c.size;
         for(int i = 0; i < size ; i++)
-            arr[i] = c.arr[i]; 
+            arr[i] = c.arr[i];
     }
     return *this;
 }
